@@ -3,6 +3,8 @@
 Simulates evolution of a population of virtual stick creatures.  
 They learn to climb using a genetic algorithm / evolutionary algorithm.
 
+Example video on Youtube: https://www.youtube.com/watch?v=XqUoxJUXihs
+
 Uses pygame for graphics.
 
 Each stick creature consists of the following:
