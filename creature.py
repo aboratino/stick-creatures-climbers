@@ -1,6 +1,6 @@
+# Stick Creatures - Climbers
 # defines creature
 #   ~ Anthony Boratino 2013-2019
-
 
 from segment import Segment
 from random import randrange, random

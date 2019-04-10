@@ -1,5 +1,6 @@
-# defines creature segments
-#   ~ Anthony Boratino 2013-2019
+# Stick Creatures - Climbers
+#  defines segments
+#  ~ Anthony Boratino 2013-2019
 
 import pygame
 import pygame.gfxdraw
