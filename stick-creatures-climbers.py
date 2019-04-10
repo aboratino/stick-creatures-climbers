@@ -1,5 +1,5 @@
 # ===================================
-# Stick Evolvers - Climbers
+# Stick Creatures - Climbers
 #   Anthony Boratino 2013-2019
 #
 #   Simulate evolution of climbing by stick creatures
@@ -20,7 +20,7 @@ from creature import Creature
 width = 1024
 height = 768
 SIZE = (width, height)
-title = "Stick Evolvers - Climbers"
+title = "Stick Creatures - Climbers"
 
 # Startup
 pygame.init()
@@ -29,7 +29,7 @@ screen = pygame.display.set_mode(SIZE)
 done = False
 
 # Simulation variables
-population = 20                 # number of creatures to spawn
+population = 25                 # number of creatures to spawn
 creatures = []                  # empty array of creatures
 n_steps = 0                     # simulation step
 n_gens = 0                      # number of generations
@@ -53,7 +53,7 @@ while not done:
     if n_steps % BREED_INTERVAL == 0:
         n_gens += 1
         best_height = BEST_H_RESET
-        creatures[best].is_stud = False;
+        creatures[best].is_stud = False
         best = 0
 
         # Creature wins if it is both inbounds on left and right of screen,
@@ -63,7 +63,7 @@ while not done:
                     0 < creatures[i].get_loc()[0] < width:
                 best_height = creatures[i].get_loc()[1]
                 best = i
-        creatures[best].is_stud = True;
+        creatures[best].is_stud = True
 
         print "Generation:", n_gens, " Best: #", best, "Height:", best_height
         for i in range(len(creatures)):

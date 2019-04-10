@@ -3,21 +3,24 @@ from random import randrange, random
 import math
 
 
-RESET_Y = 600
-RESET_X_OFFSET = 550
-RESET_X_MUL = 50
-CHANCE = 12              # 1 in CHANCE chance of mutation.
+RESET_Y = 600           # Y location of creature upon reset_location()
+RESET_X_OFFSET = 150    # How far out to push creatures from left side of screen
+RESET_X_MUL = 30        # how far out to place creature, RESET_X_MUL * cid
+
+CHANCE = 12             # 1 in CHANCE chance of mutation.
+
+N_SEG = 6               # number of segments per creature
 
 
 # Creature class
 class Creature:
     def __init__(self, cid, screen):
         self.cid = cid                  # creature id
-        self.screen = screen            # screen
-        self.n_segments = 3             # n segments for creature
-        self.limb = []                  # empty limb
-        self.is_stud = False            # is creature the winner?
-        self.mutate = 0                 # amount of mutation
+        self.screen = screen
+        self.n_segments = N_SEG
+        self.limb = []
+        self.is_stud = False
+        self.mutate = 0
 
         # create segments, initialize starting rotations of segments and
         # initialize rotation rates of segments.
@@ -29,12 +32,6 @@ class Creature:
         self.limb[0].is_first = True
         self.limb[self.n_segments-1].is_last = True
         self.reset_location()
-
-        for i in range(1, self.n_segments):
-            self.limb[i].prv = self.limb[i - 1]
-
-        for i in range(self.n_segments - 1):
-            self.limb[i].nxt = self.limb[i + 1]
 
     # reset location to bottom of screen
     def reset_location(self):
@@ -72,7 +69,7 @@ class Creature:
     # draw all the segments
     def draw(self):
         if self.is_stud:
-            self.limb[0].is_special = True
+            self.limb[0].is_stud = True
         for i in range(self.n_segments):
             self.limb[i].draw()
 

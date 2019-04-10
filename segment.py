@@ -1,5 +1,5 @@
 # defines creature segments
-# each segment is an element of a linked list
+#   ~ Anthony Boratino 2013-2019
 
 import pygame
 import pygame.gfxdraw
@@ -7,19 +7,17 @@ import pygame.gfxdraw
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 
-SWING_TIME = 250
+SWING_TIME = 400
 
 
 class Segment:
     def __init__(self, screen):
         self.screen = screen
-        self.prv = 0                    # previous segment
-        self.nxt = 0                    # next segment
         self.nxt_bx = 0
         self.nxt_by = 0
         self.prv_ex = 0
         self.prv_ey = 0
-        self.length = 12                # segment length
+        self.length = 15                # segment length
         self.bx = 0                     # begin x
         self.by = 0                     # begin y
         self.ex = 0                     # end x
@@ -31,7 +29,7 @@ class Segment:
         self.counter = 0                # swing counter
         self.a_color = (0, 255, 0)      # active color
         self.i_color = (0, 128, 0)      # inactive color
-        self.is_special = False         # Winner?
+        self.is_stud = False            # Winner?
         self.is_first = False
         self.is_last = False
 
@@ -53,16 +51,20 @@ class Segment:
             self.reverse_swing()
 
     def draw(self):
+
+        # draw lines to represent segments
         pygame.gfxdraw.line(self.screen, int(self.bx), int(self.by), int(self.ex), int(self.ey), WHITE)
 
         if not self.is_first and not self.is_last:
-            pygame.gfxdraw.aacircle(self.screen, int(self.bx), int(self.by), 3, BLUE)
+            pygame.gfxdraw.filled_circle(self.screen, int(self.bx), int(self.by), 1, BLUE)
+
         # if first point
         if self.is_first:
             pygame.gfxdraw.filled_circle(self.screen, int(self.bx), int(self.by), 5, self.a_color)
+
             # draw a white circle around the head if creature is a stud.
-            if self.is_special:
-                self.is_special = False
+            if self.is_stud:
+                self.is_stud = False
                 pygame.gfxdraw.aacircle(self.screen, int(self.bx), int(self.by), 7, (255, 255, 255))
 
         # if last point
