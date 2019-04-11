@@ -102,3 +102,4 @@ class Creature:
                 (self.limb[i].rotation + stud.limb[i].grotation) / 2 + self.mutate()
             self.limb[i].rot_rate = (stud.limb[i].rot_rate +
                                      self.limb[i].rot_rate) / 2 + self.mutate()
+
