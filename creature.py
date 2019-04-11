@@ -76,10 +76,6 @@ class Creature:
         for i in range(self.n_segments):
             self.limb[i].draw()
 
-    # return location of head
-    def get_loc(self):
-        return self.limb[0].bx, self.limb[0].by
-
     # return a mutation
     @staticmethod
     def mutate():
@@ -88,11 +84,16 @@ class Creature:
         else:
             return 0.0
 
+    # return location of head
+    def get_loc(self):
+        return self.limb[0].bx, self.limb[0].by
+
     # breed with the winner
     def breedwith(self, stud):
 
         # for each segment blend and mutate
         for i in range(self.n_segments):
+
             self.limb[i].counter = 0
             stud.limb[i].counter = 0
 
@@ -101,3 +102,4 @@ class Creature:
                 (self.limb[i].rotation + stud.limb[i].grotation) / 2 + self.mutate()
             self.limb[i].rot_rate = (stud.limb[i].rot_rate +
                                      self.limb[i].rot_rate) / 2 + self.mutate()
+
