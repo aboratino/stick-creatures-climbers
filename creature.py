@@ -24,7 +24,6 @@ class Creature:
         self.n_segments = N_SEG
         self.limb = []
         self.is_stud = False
-        self.mutate = 0
 
         # create segments, initialize starting rotations of segments and
         # initialize rotation rates of segments.
@@ -81,18 +80,24 @@ class Creature:
     def get_loc(self):
         return self.limb[0].bx, self.limb[0].by
 
+    # return a mutation
+    @staticmethod
+    def mutate():
+        if randrange(CHANCE) == 1:
+            return random() - 0.5
+        else:
+            return 0.0
+
     # breed with the winner
     def breedwith(self, stud):
-        self.mutate = 0
 
+        # for each segment blend and mutate
         for i in range(self.n_segments):
-            if randrange(CHANCE) == 1:
-                self.mutate = random() - 0.5
-            else:
-                self.mutate = 0
-
             self.limb[i].counter = 0
             stud.limb[i].counter = 0
 
-            self.limb[i].grotation = self.limb[i].rotation = (self.limb[i].rotation + stud.limb[i].grotation) / 2
-            self.limb[i].rot_rate = (stud.limb[i].rot_rate + self.limb[i].rot_rate) / 2 + self.mutate
+            self.limb[i].grotation = \
+                self.limb[i].rotation = \
+                (self.limb[i].rotation + stud.limb[i].grotation) / 2 + self.mutate()
+            self.limb[i].rot_rate = (stud.limb[i].rot_rate +
+                                     self.limb[i].rot_rate) / 2 + self.mutate()
