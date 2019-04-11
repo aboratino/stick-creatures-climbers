@@ -93,7 +93,6 @@ class Creature:
 
         # for each segment blend and mutate
         for i in range(self.n_segments):
-
             self.limb[i].counter = 0
             stud.limb[i].counter = 0
 
