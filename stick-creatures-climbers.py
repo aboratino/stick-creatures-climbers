@@ -86,3 +86,5 @@ while not done:
                 done = True
 
     pygame.display.flip()
+pygame.quit()
+
