@@ -21,6 +21,7 @@ width = 1024
 height = 768
 SIZE = (width, height)
 title = "Stick Creatures - Climbers"
+BLACK = (0, 0, 0)
 
 # Startup
 pygame.init()
@@ -45,12 +46,13 @@ for i in range(population):
 # Main loop
 
 while not done:
-
+    # increment simulation counter and blank screen
     n_steps += 1
-    screen.fill((0, 0, 0))
+    screen.fill(BLACK)
 
     # Breeding
     if n_steps % BREED_INTERVAL == 0:
+        # Increment generation counter and reset breeding vars
         n_gens += 1
         best_height = BEST_H_RESET
         creatures[best].is_stud = False
@@ -63,9 +65,13 @@ while not done:
                     0 < creatures[i].get_loc()[0] < width:
                 best_height = creatures[i].get_loc()[1]
                 best = i
+        # Flag the winner
         creatures[best].is_stud = True
 
+        # Output the results
         print "Generation:", n_gens, " Best: #", best, "Height:", best_height
+
+        # Breed the winner with the rest
         for i in range(len(creatures)):
             creatures[i].reset_location()
             if i != best:
@@ -87,4 +93,3 @@ while not done:
 
     pygame.display.flip()
 pygame.quit()
-
