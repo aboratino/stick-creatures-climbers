@@ -59,7 +59,7 @@ class Segment:
         else:
             self.rotation -= self.rot_rate
 
-        # increment swing timer and check if it's time to reverse
+        # increment swing timer and reverse when time
         self.counter += 1
         if self.counter >= SWING_COUNTER:
             self.reverse_swing()
@@ -82,16 +82,15 @@ class Segment:
                                          SIZE_JOINT,
                                          BLUE)
 
-        # if first point
+        # if first point, draw the head node
         if self.is_first:
-            # draw the 'head'
             pygame.gfxdraw.filled_circle(self.screen,
                                          self.bx,
                                          self.by,
                                          SIZE_HEAD,
                                          self.color_a)
 
-            # draw a red circle around the head if creature is a winner.
+            # If the winner, draw a red circle around the head
             if self.is_stud:
                 self.is_stud = False
                 pygame.gfxdraw.aacircle(self.screen,
@@ -100,7 +99,7 @@ class Segment:
                                         SIZE_WINNER,
                                         RED)
 
-        # if last point
+        # if last point draw the tail node
         if self.is_last:
             pygame.gfxdraw.filled_circle(self.screen,
                                          self.ex,
