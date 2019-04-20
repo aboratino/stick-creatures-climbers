@@ -13,8 +13,10 @@ RESET_X_MUL = 30        # how far out to place creature, RESET_X_MUL * cid
 CHANCE = 12             # 1 in CHANCE chance of mutation.
 N_SEGMENTS = 8          # number of segments per creature
 
-
-# Creature class
+# class Creature
+#
+# defines a Creature
+#
 class Creature:
     def __init__(self, cid, screen):
         self.cid = cid                  # creature id
