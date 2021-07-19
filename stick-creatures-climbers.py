@@ -69,7 +69,7 @@ while not done:
         creatures[best].is_stud = True
 
         # Output the results
-        print "Generation:", n_gens, " Best: #", best, "Height:", best_height
+        print("Generation:", n_gens, " Best: #", best, "Height:", best_height)
 
         # Breed the winner with the rest
         for i in range(len(creatures)):
